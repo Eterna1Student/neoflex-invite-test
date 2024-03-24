@@ -1,0 +1,146 @@
+.footer {
+    width: 100%;
+    margin-top: 20px;
+    padding-left: 17px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 29px;
+    background-color: #fff;
+    border-radius: 30px 30px 0px 0px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navList {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.navLink {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 25px;
+    color: #000;
+    transition: all ease .2s;
+}
+
+.navLink:hover {
+    color: #FFA542;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.languiges {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.btnLang {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+
+.btnLangActive {           
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 15px;
+    color: #FFA542;
+} 
+
+.contacts {
+    display: flex;
+    gap: 18px;
+}
+
+.contactsIcon>path {
+    fill: #101010;
+    transition: all ease .2s;
+}
+
+.contactsIcon:hover>path {
+    fill: #FFA542;
+}
+
+
+
+@media screen and (max-width: 650px) {
+    .content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas: 
+        'logo nav'
+        'contacts settings';
+        gap: 10px;
+    }
+
+    .logo {
+        grid-area: logo;
+    }
+
+    .nav {
+        grid-area: nav;
+    }
+
+    .settings {
+        grid-area: settings;
+    }
+
+    .contacts {
+        grid-area: contacts;
+    }
+
+    .navLink {
+        font-size: 24px;
+    }
+
+    .btnLang {
+        font-size: 24px;
+    }
+    
+    
+    .btnLangActive {           
+        font-size: 20px;
+    } 
+
+    .languiges {
+        margin-top: 20px;
+    }
+
+    .contacts {
+        align-items: end;
+    }
+}
+
+@media screen and (max-width: 535px) {
+    .content {
+        display: grid;
+        grid-template-columns: 5fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+        'logo contacts'
+        'nav contacts'
+        'settings contacts';
+        gap: 15px;
+    }
+
+    .contacts {
+        flex-direction: column;
+    }
+}

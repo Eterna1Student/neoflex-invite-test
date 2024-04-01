@@ -1,5 +1,6 @@
 import s from './Basket.module.css'
 import React, { useEffect, useState } from 'react';
+import EmptyBasket from './EmptyBasket/EmptyBasket';
 
 export default function Basket({basket, deleteBasketCard, incrementBasketCard, decrementBasketCard}) {
 
@@ -9,6 +10,12 @@ export default function Basket({basket, deleteBasketCard, incrementBasketCard, d
         const calcSumPrice = Object.values(basket).reduce((sum, item) => sum + item.count * item.card.price, 0)
     setSumPrice(calcSumPrice)
     },[basket])
+
+    if (!Object.values(basket).length) return (
+        <div className={s.basket}>
+            <EmptyBasket /> 
+        </div>
+    )
 
     return (
         <div className={s.basket}>

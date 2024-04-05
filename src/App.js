@@ -4,7 +4,8 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Products from './components/Products/Products'
 import Basket from './components/Basket/Basket'
-import { useState } from 'react'
+import Pay from './components/Pay/Pay'
+import { useState, useEffect } from 'react'
 
 export default function App() {
 
@@ -102,7 +103,14 @@ export default function App() {
     }
   ]
 
-  const [basket, setBasket] = useState({})
+  const [basket, setBasket] = useState(localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : {})
+
+  const [sumPrice, setSumPrice] = useState(0)
+
+    useEffect(() => {
+        const calcSumPrice = Object.values(basket).reduce((sum, item) => sum + item.count * item.card.price, 0)
+    setSumPrice(calcSumPrice)
+    },[basket])
 
   const addBasketCard = (card) => {
     
@@ -125,6 +133,8 @@ export default function App() {
                       }
         }) 
     }
+
+    localStorage.setItem('basket', JSON.stringify(basket))
   }
 
   const deleteBasketCard = (id) => {
@@ -134,6 +144,8 @@ export default function App() {
 
     delete newBasket[id]
     setBasket(newBasket)
+
+    localStorage.setItem('basket', JSON.stringify(basket))
   }
 
   const incrementBasketCard = (id) => {
@@ -143,6 +155,8 @@ export default function App() {
 
     newBasket[id].count += 1
     setBasket(newBasket) 
+
+    localStorage.setItem('basket', JSON.stringify(basket))
   }
 
   const decrementBasketCard = (id) => {
@@ -152,8 +166,9 @@ export default function App() {
 
     if(newBasket[id].count > 1) newBasket[id].count -= 1
     setBasket(newBasket)
-  }
-    
+
+    localStorage.setItem('basket', JSON.stringify(basket))
+  } 
 
 
   return (
@@ -163,11 +178,15 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Products data={data} addBasketCard={addBasketCard}/>}/>
                 <Route  path="/basket"
-                        element={<Basket 
-                        basket={basket}
-                        deleteBasketCard={deleteBasketCard}
-                        incrementBasketCard={incrementBasketCard}
-                        decrementBasketCard={decrementBasketCard}/>}/>
+                        element={
+                            <Basket 
+                                basket={basket}
+                                deleteBasketCard={deleteBasketCard}
+                                incrementBasketCard={incrementBasketCard}
+                                decrementBasketCard={decrementBasketCard}
+                                sumPrice={sumPrice}/>
+                            }/>
+                <Route path="/Pay" element={<Pay basket={basket} sumPrice={sumPrice}/>}/>
             </Routes>
             <Footer />
         </div>

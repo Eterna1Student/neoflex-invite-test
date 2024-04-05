@@ -1,0 +1,220 @@
+.pay {
+    flex: 1 1 auto;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 29px 0;
+}
+
+.pay__title {
+    margin-bottom: 13px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #1c1c27;
+}
+
+.pay__content {
+    display: grid;
+    column-gap: 30px;
+    row-gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 164px auto;
+    grid-template-areas: 
+    'form order'
+    'form method'
+    'form btn';
+}
+
+.form {
+    display: grid;
+    grid-area: form;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(8, auto);
+    row-gap: 10px;
+    column-gap: 25px;
+    max-height: 460px;
+    padding: 20px 30px 25px;
+    border-radius: 30px;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    transition: all ease .1s;
+    grid-template-areas: 
+    'city price'
+    'address address'
+    'street street'
+    'home entrance'
+    'floor apartment'
+    'tel tel'
+    'email email'
+    'comment comment';
+}
+
+.form__city {
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    grid-area: city;
+}
+
+.form__price {
+    text-align: end;
+    font-weight: 500;
+    font-size: 20px;
+    grid-area: price;
+}
+
+.form__address {
+    margin-bottom: 6px;
+    padding-left: 36px;
+    font-weight: 500;
+    font-size: 16px;
+    grid-area: address;
+    background-image: url(./../../../public/images/marker.svg);
+    background-repeat: no-repeat;
+    background-size: 3%;
+    background-position-x: 10px;
+}
+
+.form>textarea {
+    resize: none;
+}
+
+.form>input, .form>textarea {
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #9999a0;
+    background-color: #cacaca;
+    position: relative;
+}
+
+.form>input::placeholder, .form>textarea::placeholder {
+    color: #9999a0;
+}
+
+.form__street {
+    grid-area: street;
+}
+
+.form__home {
+    grid-area: home;
+}
+
+.form__entrance {
+    grid-area: entrance;
+}
+
+.form__floor {
+    grid-area: floor;
+}
+
+.form__apartment {
+    grid-area: apartment;
+}
+
+.form__tel {
+    grid-area: tel;
+}
+
+.form__email {
+    grid-area: email;
+}
+
+.form__comment {
+    grid-area: comment;
+}
+
+.pay__order {
+    padding: 15px 20px;
+    border-radius: 30px;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    grid-area: order;
+}
+
+
+
+.pay__method {
+    padding: 20px 30px;
+    border-radius: 30px;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    grid-area: method;
+
+}
+
+.pay__btn {
+    height: 45px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #1c1c27;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    grid-area: btn;
+    transition: all ease .2s;
+    cursor: pointer;
+}
+
+.pay__btn:hover {
+    opacity: .8;
+}
+
+h3 {
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.order__content_price {
+    font-weight: 600;
+    text-align: end;
+}
+
+.order__content_product {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-left: 36px;
+}
+
+.order__content_name {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 36px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.name__quantity {
+    position: absolute;
+    left: 4px;
+}
+
+.pay__method>form>label {
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+    cursor: pointer;
+}
+
+@media ( max-width: 980px ) {
+
+    /* .pay {
+        overflow-y: scroll;
+    } */
+
+    .pay__content {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+        grid-template-areas: 
+        'order'
+        'form'
+        'method'
+        'btn';
+    }
+}

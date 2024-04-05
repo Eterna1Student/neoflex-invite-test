@@ -1,15 +1,9 @@
 import s from './Basket.module.css'
 import React, { useEffect, useState } from 'react';
 import EmptyBasket from './EmptyBasket/EmptyBasket';
+import { Link } from 'react-router-dom';
 
-export default function Basket({basket, deleteBasketCard, incrementBasketCard, decrementBasketCard}) {
-
-    const [sumPrice, setSumPrice] = useState(0)
-
-    useEffect(() => {
-        const calcSumPrice = Object.values(basket).reduce((sum, item) => sum + item.count * item.card.price, 0)
-    setSumPrice(calcSumPrice)
-    },[basket])
+export default function Basket({basket, deleteBasketCard, incrementBasketCard, decrementBasketCard, sumPrice}) {
 
     if (!Object.values(basket).length) return (
         <div className={s.basket}>
@@ -63,7 +57,9 @@ export default function Basket({basket, deleteBasketCard, incrementBasketCard, d
                 </div>
                 <div className={s.order}>
                     <span className={s.orderTitle}>ИТОГО<span className={s.orderSum}>₽ {sumPrice.toLocaleString('ru')}</span></span>
-                    <button className={s.orderBtn}>Перейти к оформлению</button>
+                    <Link className={s.orderBtn} 
+                          to={'/Pay'}>Перейти к оформлению
+                    </Link>
                 </div>
             </div>
         </div>

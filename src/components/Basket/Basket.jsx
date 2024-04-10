@@ -16,9 +16,9 @@ export default function Basket({basket, deleteBasketCard, incrementBasketCard, d
             <h2 className={s.title}>Корзина</h2>
             <div className={s.content}>
                 <div className={s.cards}>
-                    {basket && Object.values(basket).map((item) => {
+                    {basket && Object.values(basket).map((item, index) => {
                         return (
-                            <div className={s.products}>
+                            <div className={s.products} key={index}>
                                 <div className={s.productsParameters}>
                                     <div className={s.productsImage}>
                                         <img src={item.card.image} alt={item.card.alt} />

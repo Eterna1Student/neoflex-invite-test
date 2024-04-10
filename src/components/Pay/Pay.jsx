@@ -4,7 +4,7 @@ import s from './Pay.module.css'
 
 export default function Pay({basket, sumPrice}) {
 
-    const [checked, setChecked] = useState('Прераевод')
+    const [checked, setChecked] = useState('Перевод')
     const methods = ['Перевод', 'Оплата при получении', 'Оплата картой']
 
     return (
@@ -32,9 +32,9 @@ export default function Pay({basket, sumPrice}) {
                         {basket && Object.values(basket).map((item, index) => {
                             return (
                                 <div className={s.order__content_name} key={index}>
-                                    {item.card.cardTitle} ({item.card.price} ₽)
+                                    {item.card.cardTitle} ({item.card.price.toLocaleString('ru')} ₽)
                                     <span className={s.name__quantity}>{item.count} x</span>
-                                    <span className={s.order__content_price}>{item.card.price*item.count} ₽</span>
+                                    <span className={s.order__content_price}>{(item.card.price*item.count).toLocaleString('ru')} ₽</span>
                                 </div>
                             )
                         })}
@@ -53,8 +53,8 @@ export default function Pay({basket, sumPrice}) {
                         Способ оплаты
                     </h3>
                     <form>
-                        {methods.map((item) => (
-                            <label key={item}>
+                        {methods.map((item, index) => (
+                            <label key={index}>
                                 <input className={s.pay__method_item} type="radio" checked={checked === item} onChange={() => setChecked(item)} />
                                 <span>{item}</span>
                             </label>
